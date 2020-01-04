@@ -9,16 +9,12 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table(name="integritas")
-public class IntegritasModel implements Serializable{
+@Table(name="userIntegrity")
+public class UserIntegrityModel implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @NotNull
-    @Column(name="rate", nullable = false)
-    private double rate;
-
+    
     @NotNull
     @Column(name="riwayatPajak", nullable = false)
     private int riwayatPajak;
@@ -26,6 +22,9 @@ public class IntegritasModel implements Serializable{
     @NotNull
     @Column(name="riwayatKredit", nullable = false)
     private int riwayatKredit;
+
+    @OneToOne(mappedBy = "userIntegrity")
+    private UserModel user;
 
     public Long getId() {
         return id;
@@ -44,5 +43,11 @@ public class IntegritasModel implements Serializable{
     }
     public void setRiwayatKredit(int riwayatKredit){
         this.riwayatKredit = riwayatKredit;
+    }
+    public UserModel getUser() {
+        return this.user;
+    }
+    public void setUser(UserModel user) {
+        this.user = user;
     }
 }

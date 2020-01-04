@@ -28,6 +28,9 @@ public class JaminanModel implements Serializable{
     @NotNull
     @Column(name="tahun", nullable = false)
     private int tahun;
+
+    @OneToOne(mappedBy = "jaminan")
+    private KreditModel kredit;
     
     public Long getId() {
         return id;
@@ -52,5 +55,11 @@ public class JaminanModel implements Serializable{
     }
     public void setTahun(int tahun){
         this.tahun = tahun;
+    }
+    public KreditModel getKredit() {
+        return this.kredit;
+    }
+    public void setKredit(KreditModel kredit) {
+        this.kredit = kredit;
     }
 }

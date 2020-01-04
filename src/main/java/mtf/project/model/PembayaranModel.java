@@ -24,6 +24,9 @@ public class PembayaranModel implements Serializable{
     @Column(name="konstanta", nullable = false)
     private int konstanta;
 
+    @OneToMany(mappedBy = "pembayaran", fetch = FetchType.LAZY)
+    private List<KreditModel> kredit;
+
     public Long getId() {
         return id;
     }
@@ -41,5 +44,11 @@ public class PembayaranModel implements Serializable{
     }
     public void setKonstanta(int konstanta){
         this.konstanta = konstanta;
+    }
+    public List<KreditModel> getKredit() {
+        return this.kredit;
+    }
+    public void setKredit(List<KreditModel> kredit) {
+        this.kredit = kredit;
     }
 }

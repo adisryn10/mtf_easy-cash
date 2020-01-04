@@ -23,6 +23,9 @@ public class AprModel implements Serializable{
     @Column(name="tenor", nullable = false)
     private int tenor;
 
+    @OneToMany(mappedBy = "apr", fetch = FetchType.LAZY)
+    private List<KreditModel> kredit;
+
     public Long getId() {
         return id;
     }
@@ -40,5 +43,11 @@ public class AprModel implements Serializable{
     }
     public void setTenor(int tenor){
         this.tenor = tenor;
+    }
+    public List<KreditModel> getKredit() {
+        return this.kredit;
+    }
+    public void setKredit(List<KreditModel> kredit) {
+        this.kredit = kredit;
     }
 }

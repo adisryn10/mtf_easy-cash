@@ -4,6 +4,9 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import java.io.Serializable;
 
 import java.util.List;
@@ -18,7 +21,28 @@ public class KreditModel implements Serializable{
     @NotNull
     @Column(name="nominal", nullable = false)
     private int nominal;
-    
+
+    @ManyToOne
+    @JoinColumn(name = "tenor_apr", referencedColumnName = "tenor", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    AprModel apr;
+
+    @ManyToOne
+    @JoinColumn(name = "id_pembayaran", referencedColumnName = "id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    PembayaranModel pembayaran;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_angsuran")
+    private AngsuranModel angsuran;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_jaminan")
+    private JaminanModel jaminan;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_user")
+    private UserModel user;
 
     public Long getId() {
         return id;
@@ -31,5 +55,38 @@ public class KreditModel implements Serializable{
     }
     public void setNomial(int nominal){
         this.nominal = nominal;
+    }
+    public AprModel getApr() {
+        return this.apr;
+    }
+    public void setApr(AprModel apr) {
+        this.apr = apr;
+    }
+    public PembayaranModel getPembayaran() {
+        return this.pembayaran;
+    }
+
+    public void setPembayaran(PembayaranModel pembayaran) {
+        this.pembayaran = pembayaran;
+    }
+    public AngsuranModel getAngsuran() {
+        return this.angsuran;
+    }
+
+    public void setAngsuran(AngsuranModel angsuran) {
+        this.angsuran = angsuran;
+    }
+    public JaminanModel getJaminan() {
+        return this.jaminan;
+    }
+    public void setJaminan(JaminanModel jaminan) {
+        this.jaminan = jaminan;
+    }
+    public UserModel getUser() {
+        return this.user;
+    }
+
+    public void setUser(UserModel user) {
+        this.user = user;
     }
 }

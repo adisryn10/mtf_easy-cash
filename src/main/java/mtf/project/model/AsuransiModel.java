@@ -28,6 +28,13 @@ public class AsuransiModel implements Serializable{
     @Column(name="bulan", nullable = false)
     private int bulan;
 
+    @OneToMany(mappedBy = "asuransi", fetch = FetchType.LAZY)
+    private List<AngsuranModel> angsuran;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_user")
+    private UserModel user;
+
     public Long getId() {
         return id;
     }
@@ -51,5 +58,17 @@ public class AsuransiModel implements Serializable{
     }
     public void setBulan(int bulan){
         this.bulan = bulan;
+    }
+    public List<AngsuranModel> getAngsuran() {
+        return this.angsuran;
+    }
+    public void setAngsuran(List<AngsuranModel> angsuran) {
+        this.angsuran = angsuran;
+    }
+    public UserModel getUser() {
+        return this.user;
+    }
+    public void setUser(UserModel user) {
+        this.user = user;
     }
 }
