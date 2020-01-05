@@ -1,9 +1,25 @@
+.idea/
+.vscode/
+node_modules/
+build
+.DS_Store
+*.tgz
+my-app*
+template/src/__tests__/__snapshots__/
+lerna-debug.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+/.changelog
+.npm/
+src/main/resources/application.properties
+*#
+
 HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**
 !**/src/test/**
-src/main/resources/application.properties
 
 ### STS ###
 .apt_generated
