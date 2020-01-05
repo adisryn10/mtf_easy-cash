@@ -30,8 +30,8 @@ public class KreditController{
 
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public String home(Model model){
-        List<UserModel> listUser = userService.getAllUser();
-        model.addAttribute("listUser", listUser);
+        // List<UserModel> listUser = userService.getAllUser();
+        // model.addAttribute("listUser", listUser);
         return "home";
     }
 
