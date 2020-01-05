@@ -41,13 +41,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Customer</td>
-                                <td>10031999</td>
+                            <tr th:each="user, counter : ${listUser}">
+                                <td th:text="${counter.count}"></td>
+                                <td th:text="${user.userIdentity.nama}"></td>
+                                <td th:text="${user.userIdentity.ktp}"></td>
                                 <td>Approved</td>
                                 <td>
-                                    <a>
+                                    <a th:href="@{/user/manage/}+${user.id}">
                                         <button class="btn btn-primary">
                                             Manage
                                         </button>

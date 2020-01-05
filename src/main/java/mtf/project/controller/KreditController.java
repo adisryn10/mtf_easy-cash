@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import mtf.project.model.UserModel;
+import mtf.project.model.UserRoleModel;
 import mtf.project.service.FileService;
 import mtf.project.service.UserService;
 
@@ -30,21 +30,21 @@ public class KreditController{
 
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public String home(Model model){
-        // List<UserModel> listUser = userService.getAllUser();
-        // model.addAttribute("listUser", listUser);
+        List<UserRoleModel> listUser = userService.getAllUser();
+        model.addAttribute("listUser", listUser);
         return "home";
     }
 
     @RequestMapping(path = "/user/manage/{idUser}", method = RequestMethod.GET)
     public String userManage(@PathVariable String idUser, Model model){
-        UserModel user = userService.getUserById(idUser);
+        UserRoleModel user = userService.getUserById(idUser);
         model.addAttribute("user", user);
         return "user";
     }
 
     @RequestMapping(path = "/user/detail/{idUser}", method = RequestMethod.GET)
     public String userDetail(@PathVariable String idUser, Model model){
-        UserModel user = userService.getUserById(idUser);
+        UserRoleModel user = userService.getUserById(idUser);
         model.addAttribute("user", user);
         return "user-detail";
     }

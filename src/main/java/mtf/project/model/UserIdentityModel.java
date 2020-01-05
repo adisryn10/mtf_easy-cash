@@ -82,7 +82,7 @@ public class UserIdentityModel implements Serializable{
     private String rekeningMandiri;
 
     @OneToOne(mappedBy = "userIdentity")
-    private UserModel user;
+    private UserRoleModel user;
 
     public Long getId() {
         return id;
@@ -180,10 +180,10 @@ public class UserIdentityModel implements Serializable{
         this.rekeningMandiri = rekeningMandiri;
     }
 
-    public UserModel getUser() {
+    public UserRoleModel getUser() {
         return this.user;
     }
-    public void setUser(UserModel user) {
+    public void setUser(UserRoleModel user) {
         this.user = user;
     }
 

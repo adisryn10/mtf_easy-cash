@@ -5,6 +5,6 @@ import java.util.List;
 import mtf.project.model.*;
 
 public interface UserService{
-    UserModel getUserById(String id);
-    List<UserModel> getAllUser();
+    UserRoleModel getUserById(String id);
+    List<UserRoleModel> getAllUser();
 }

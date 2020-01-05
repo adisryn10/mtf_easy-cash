@@ -29,7 +29,7 @@ public class RoleModel implements Serializable{
     @OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
-    private List<UserModel> userRole;
+    private List<UserRoleModel> userRole;
 
     public Long getId() {
         return id;
@@ -47,11 +47,11 @@ public class RoleModel implements Serializable{
         this.nama = nama;
     }
 
-    public List<UserModel> getUserRole() {
+    public List<UserRoleModel> getUserRole() {
         return userRole;
     }
 
-    public void setUserRole(List<UserModel> userRole) {
+    public void setUserRole(List<UserRoleModel> userRole) {
         this.userRole = userRole;
     }
 }
