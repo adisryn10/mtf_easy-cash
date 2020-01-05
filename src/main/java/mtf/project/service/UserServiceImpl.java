@@ -17,12 +17,12 @@ public class UserServiceImpl implements UserService {
     private UserDb userDb;
 
     @Override
-	public List<UserModel> getAllUser() {
+	public List<UserRoleModel> getAllUser() {
 		return userDb.findAll();
     }
 
     @Override
-    public UserModel getUserById(String id) {
+    public UserRoleModel getUserById(String id) {
         return userDb.findById(id);
     }
 }

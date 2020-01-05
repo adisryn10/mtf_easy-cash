@@ -33,7 +33,7 @@ public class AsuransiModel implements Serializable{
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_user")
-    private UserModel user;
+    private UserRoleModel user;
 
     public Long getId() {
         return id;
@@ -65,10 +65,10 @@ public class AsuransiModel implements Serializable{
     public void setAngsuran(List<AngsuranModel> angsuran) {
         this.angsuran = angsuran;
     }
-    public UserModel getUser() {
+    public UserRoleModel getUser() {
         return this.user;
     }
-    public void setUser(UserModel user) {
+    public void setUser(UserRoleModel user) {
         this.user = user;
     }
 }

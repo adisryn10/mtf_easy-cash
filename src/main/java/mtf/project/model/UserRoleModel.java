@@ -15,8 +15,8 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table(name="user")
-public class UserModel implements Serializable{
+@Table(name="userRole")
+public class UserRoleModel implements Serializable{
     @Id
     @GeneratedValue(generator = "system-uuid")
     @GenericGenerator(name = "system-uuid", strategy = "uuid")
