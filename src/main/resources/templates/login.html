@@ -1,0 +1,50 @@
+<object th:include="fragments/custFragment  ::  all" th:remove="tag"></object>
+
+<br><br>
+
+<div class="site-section bg-light" id="contact-section">
+    <div class="container">
+      <div class="row mb-5">
+        <div class="col-12 text-center">
+          <h2 class="section-title mb-3">Log In</h2>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-lg-7 mb-5">
+          <form  th:action="@{/login}" class="p-5 bg-white" method="POST">
+            <div th:if="${param.error}">
+              <span style="color: red">Invalid username or password</span>
+            </div>
+
+            <div class="row form-group">
+              
+              <div class="col-md-12">
+                <label class="text-black" for="subject">Username</label> 
+                <input type="subject" id="subject" name="username" class="form-control rounded-0">
+              </div>
+            </div>
+
+            <div class="row form-group">       
+                <div class="col-md-12">
+                  <label class="text-black" for="subject">Password</label> 
+                  <input type="password" id="subject" name="password"class="form-control rounded-0">
+                </div>
+              </div>
+
+            <div class="row form-group">
+              <div class="col-md-12">
+                <input type="submit" value="Log In" class="btn btn-primary mr-2 mb-2">
+              </div>
+              <div class="col-md-12">
+          
+              </div>
+            </div>
+
+
+          </form>
+          <a th:href="@{/register}">
+            <button class="btn btn-primary">
+                Register
+            </button>
+        </a>
+          </div></div></div></div>

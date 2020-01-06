@@ -1,0 +1,136 @@
+<object th:include="fragments/custFragment  ::  all" th:remove="tag"></object>
+
+<br>
+<br>
+
+      <!-- Page Content  -->
+      <div id="content" class="p-4 p-md-5 pt-5">
+        <div class="container-fluid">
+            <h2 class="mb-4">Account</h2>
+            <table class="table" style="width:75%">
+                <tbody>
+                    <tr>
+                        <th style="width: 300px;">Nama </th>
+                        <td th:text="Cici"></td>
+                    </tr>
+                    
+                    <tr>
+                        <th>KTP </th>
+                        <td th:text="12389"></td>
+                    </tr>
+                    <tr>
+                        <th>KK </th>
+                        <td th:text="12381923"></td>
+                    </tr>
+                    <tr>
+                        <th>NPWP </th>
+                        <td th:text="123123"></td>
+                    </tr>
+                    <tr>
+                        <th>BPKB </th>
+                        <td th:text="123123"></td>
+                    </tr>
+                    <tr>
+                        <th>BKR</th>
+                        <td th:text="12312312"></td>
+                    </tr>
+                    <tr>
+                        <th>STNK</th>
+                        <td th:text="123123123"></td>
+                    </tr>
+                    <tr>
+                        <th>Fraktur</th>
+                        <td th:text="123123"></td>
+                    </tr>
+                    <tr>
+                        <th>Tujuan Kredit </th>
+                        <td th:text="1231231"></td>
+                    </tr>
+                    <tr>
+                        <th>Rancangan Anggaran</th>
+                        <td th:text="123123213"></td>
+                    </tr>
+                    <tr>
+                        <th>Rekening Koran</th>
+                        <td th:text="12312312"></td>
+                    </tr>
+                    <tr>
+                        <th>Rekening Mandiri</th>
+                        <td th:text="2131231232"></td>
+                    </tr>
+    
+                    
+                </tbody>
+                
+            </table>           
+        </div>
+      </div>
+    </div>
+
+<h6>Status Pengajuan Kredit</h6>
+
+<div class="container-bar">
+    <ul class="progressbar">
+        <li class="active">Credit Application Sent</li>
+        <li>In Review</li>
+        <li>Survey</li>
+        <li>Waiting For Approval</li>
+</ul>
+</div>
+<br>
+<br>
+
+<style>
+.container-bar {
+    width: 800px;
+    margin: 100px auto; 
+    font-size: large;
+}
+.progressbar {
+    counter-reset: step;
+}
+.progressbar li {
+    list-style-type: none;
+    width: 25%;
+    float: left;
+    font-size: 12px;
+    position: relative;
+    text-align: center;
+    color: #7d7d7d;
+}
+.progressbar li:before {
+    width: 30px;
+    height: 30px;
+    content: counter(step);
+    counter-increment: step;
+    line-height: 30px;
+    border: 2px solid #7d7d7d;
+    display: block;
+    text-align: center;
+    margin: 0 auto 10px auto;
+    border-radius: 50%;
+    background-color: white;
+}
+.progressbar li:after {
+    width: 100%;
+    height: 2px;
+    content: '';
+    position: absolute;
+    background-color: #7d7d7d;
+    top: 15px;
+    left: -50%;
+    z-index: -1;
+}
+.progressbar li:first-child:after {
+    content: none;
+}
+.progressbar li.active {
+    color: green;
+}
+.progressbar li.active:before {
+    border-color: #55b776;
+}
+.progressbar li.active + li:after {
+    background-color: #55b776;
+}
+</style>
