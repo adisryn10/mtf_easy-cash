@@ -12,4 +12,5 @@ public interface UserDb extends JpaRepository<UserRoleModel, Long> {
     UserRoleModel findById(String uuid);
     UserRoleModel findByUsername(String username);
     List<UserRoleModel> findAll();
+	List<UserRoleModel> findByRoleNama(String string);
 }

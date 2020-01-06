@@ -37,9 +37,9 @@ public class KreditController{
         for (GrantedAuthority authority: auth.getAuthorities()){
             model.addAttribute("role", authority.getAuthority());
         }
-        List<UserRoleModel> listUser = userService.getAllUser();
+        List<UserRoleModel> listUser = userService.getUserByRoleNama("Customer");
         model.addAttribute("listUser", listUser);
-        return "home";
+        return "admin";
     }
 
     @RequestMapping(path = "/user/manage/{idUser}", method = RequestMethod.GET)

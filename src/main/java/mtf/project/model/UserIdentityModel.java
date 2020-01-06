@@ -81,6 +81,11 @@ public class UserIdentityModel implements Serializable{
     @Column(name="rekeningMandiri", nullable = false)
     private String rekeningMandiri;
 
+    @NotNull
+    @Size(max = 200)
+    @Column(name="pendapatan", nullable = false)
+    private String pendapatan;
+    
     @OneToOne(mappedBy = "userIdentity")
     private UserRoleModel user;
 
@@ -185,6 +190,12 @@ public class UserIdentityModel implements Serializable{
     }
     public void setUser(UserRoleModel user) {
         this.user = user;
+    }
+    public String getPendapatan() {
+        return this.pendapatan;
+    }
+    public void setPendapatan(String pendapatan) {
+        this.pendapatan = pendapatan;
     }
 
 }

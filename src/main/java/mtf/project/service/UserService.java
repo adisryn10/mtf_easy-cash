@@ -9,4 +9,5 @@ public interface UserService{
     public String encrypt(String password);
     List<UserRoleModel> getAllUser();
 	UserRoleModel addUser(UserRoleModel user);
+	List<UserRoleModel> getUserByRoleNama(String string);
 }
