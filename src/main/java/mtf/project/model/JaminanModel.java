@@ -26,11 +26,25 @@ public class JaminanModel implements Serializable{
     private String jenis;
 
     @NotNull
+    @Size(max = 255)
+    @Column(name="asuransi", nullable = false)
+    private String asuransi;
+
+    @NotNull
     @Column(name="tahun", nullable = false)
     private int tahun;
 
+    @NotNull
+    @Column(name="harga", nullable = false)
+    private int harga;
+
     @OneToOne(mappedBy = "jaminan")
     private KreditModel kredit;
+
+    @NotNull
+    @Size(max = 255)
+    @Column(name="area", nullable = false)
+    private String area;
     
     public Long getId() {
         return id;
@@ -50,6 +64,18 @@ public class JaminanModel implements Serializable{
     public void setJenis(String jenis) {
         this.jenis = jenis;
     }
+    public String getArea() {
+        return area;
+    }
+    public void setArea(String area) {
+        this.area = area;
+    }
+    public String getAsuransi() {
+        return asuransi;
+    }
+    public void setAsuransi(String asuransi) {
+        this.asuransi = asuransi;
+    }
     public int getTahun(){
         return tahun;
     }
@@ -61,5 +87,11 @@ public class JaminanModel implements Serializable{
     }
     public void setKredit(KreditModel kredit) {
         this.kredit = kredit;
+    }
+    public int getHarga() {
+        return this.harga;
+    }
+    public void setHarga(int harga) {
+        this.harga = harga;
     }
 }
