@@ -20,7 +20,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 import mtf.project.model.UserRoleModel;
 import mtf.project.service.FileService;
+import mtf.project.service.JaminanService;
 import mtf.project.service.UserService;
+import mtf.project.model.JaminanModel;
+import mtf.project.model.KreditModel;
 
 @Controller
 public class KreditController{
@@ -30,6 +33,9 @@ public class KreditController{
 
     @Autowired
     FileService fileService;
+
+    @Autowired
+    JaminanService jaminanService;
 
     @RequestMapping(path = "/admin")
     public String home(Model model){
@@ -86,9 +92,35 @@ public class KreditController{
     }
 
     @RequestMapping(path = "/ajukan", method = RequestMethod.GET)
-    public String form(){
+    public String ajukan(){
         return "ajukan";
     }
+
+    @RequestMapping(path = "/form", method = RequestMethod.GET)
+    public String form(){
+        return "form";
+    }
+
+    @RequestMapping(path = "/formketiga", method = RequestMethod.GET)
+    public String formketiga(){
+        return "formketiga";
+    }
+
+    @RequestMapping(path = "/formAngunan", method = RequestMethod.GET)
+    public String formAngunan(Model model){
+        KreditModel kreditModel = new KreditModel();
+        JaminanModel jaminanModel = new JaminanModel();
+        jaminanModel.setKredit(kreditModel);
+        model.addAttribute("jaminanModel", jaminanModel);
+        return "formAngunan";
+    }
+
+    @RequestMapping(path = "/submitJaminan", method = RequestMethod.GET)
+    public String submitJaminan(@ModelAttribute JaminanModel barangJaminan, Model model){
+        jaminanService.addJaminan(barangJaminan);
+        return "ajukan";
+    }
+
     @RequestMapping(value = "/addUser", method = RequestMethod.POST)
     public String addUserSubmit(@ModelAttribute UserRoleModel user, Model model){
         userService.addUser(user);
