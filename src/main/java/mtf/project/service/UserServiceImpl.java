@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Service
 @Transactional
@@ -15,6 +16,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserDb userDb;
+    
+    @Autowired
+    private RoleDb roleDb;
 
     @Override
 	public List<UserRoleModel> getAllUser() {
@@ -24,5 +28,21 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserRoleModel getUserById(String id) {
         return userDb.findById(id);
+    }
+
+    @Override
+    public UserRoleModel addUser(UserRoleModel user) {
+        String pass = encrypt(user.getPassword());
+        RoleModel roleCustomer = roleDb.findByNama("Customer");
+        user.setPassword(pass);
+        user.setRole(roleCustomer);
+        return userDb.save(user);
+    }
+
+    @Override
+    public String encrypt(String password) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String hashedPassword = passwordEncoder.encode(password);
+        return hashedPassword;
     }
 }
