@@ -16,59 +16,60 @@
             <form th:action="@{/submitJaminan}" th:object="${jaminanModel}" class="p-5 bg-white" method=POST>
             
                 <h2 class="h4 text-black mb-5">(1/3) Data Kredit & Jaminan</h2> 
-               
-                <div class="row form-group">
+
+                   <div class="row form-group">
                   
-                    <div class="col-md-12">
-                      <label class="text-black" for="merk">Nominal Kredit</label> 
-                      <input type="int" th:field="${jaminanModel.kredit.nominal}" class="form-control rounded-0">
+                  <div class="col-md-12">
+                    <label class="text-black" for="merk">Kendaraan</label> 
+                    <div>
+                      <select class="form-control rounded-0" th:field="${jaminanModel.kendaraan}">
+                        <option th:each="kendaraan : ${listKendaraan}" th:value="${kendaraan.id}" th:text="${kendaraan.jenis}  + ' -  ' +  ${kendaraan.merk}"></option>
+                      </select>
                     </div>
-                  </div>    
-    
-                <div class="row form-group">
-                  
-                  <div class="col-md-12">
-                    <label class="text-black" for="merk">Merk Kendaraan</label> 
-                    <input type="text" id="merk" th:field="${jaminanModel.merk}" class="form-control rounded-0">
+                    <!-- <input type="text" id="merk" th:field="${jaminanModel.merk}" class="form-control rounded-0"> -->
                   </div>
-                </div>
+                </div>  
   
                 <div class="row form-group">
-                  
-                  <div class="col-md-12">
-                    <label class="text-black" for="email">Jenis Kendaraan</label> 
-                    <input type="text" id="jenis" th:field="${jaminanModel.jenis}" class="form-control rounded-0">
-                  </div>
-                </div>
-  
-                <div class="row form-group">
-                  
                   <div class="col-md-12">
                     <label class="text-black" for="subject">Tahun Kendaraan</label> 
                     <input type="text" id="tahun" th:field="${jaminanModel.tahun}" class="form-control rounded-0">
                   </div>
                 </div>
   
-                <div class="row form-group">
+                <!-- <div class="row form-group">
                   
                   <div class="col-md-12">
                     <label class="text-black" for="subject">Harga Kendaraan</label> 
                     <input type="text" id="harga" th:field="${jaminanModel.harga}" class="form-control rounded-0">
                   </div>
-                </div>
+                </div> -->
   
                 <div class="row form-group">
                   <div class="col-md-12">
                   <label class="text-black" for="subject">Area</label>
-                  <select class="form-control" id="exampleFormControlSelect1" th:field="${jaminanModel.area}">
+                  <select class="form-control rounded-0" id="exampleFormControlSelect1" th:field="${jaminanModel.area}">
                     <option th:value="Sumatra">Sumatera</option>
                     <option th:value="Jakarta">Jakarta dan sekitarnya</option>
                     <option th:value="Other">Lainnya</option>
                   </select>
                 </div>
                 </div>
-  
+
                 <div class="row form-group">
+                  
+                  <div class="col-md-12">
+                    <label class="text-black" for="merk">Asuransi</label> 
+                    <div>
+                      <select class="form-control rounded-0" th:field= "${jaminanModel.asuransi}">
+                        <option th:each="asuransi : ${listAsuransi}" th:value="${asuransi.id}" th:text="${asuransi.nama}"></option>
+                      </select>
+                    </div>
+                    <!-- <input type="text" id="merk" th:field="${jaminanModel.merk}" class="form-control rounded-0"> -->
+                  </div>
+                </div>
+  
+                <!-- <div class="row form-group">
                   <div class="col-md-12">
                   <label class="text-black" for="subject">Asuransi</label>
                   <select class="form-control" id="exampleFormControlSelect1" th:field= "${jaminanModel.asuransi}">
@@ -76,7 +77,7 @@
                     <option th:value="Komprehensif">Komprehensif</option>
                   </select>
                 </div>
-                </div>
+                </div> -->
   
                 <div class="row form-group">
                   <div class="col-md-12">

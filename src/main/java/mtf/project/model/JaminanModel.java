@@ -4,6 +4,9 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import java.io.Serializable;
 
 import java.util.List;
@@ -16,21 +19,6 @@ public class JaminanModel implements Serializable{
     private Long id;
 
     @NotNull
-    @Size(max = 255)
-    @Column(name="merk", nullable = false)
-    private String merk;
-
-    @NotNull
-    @Size(max = 255)
-    @Column(name="jenis", nullable = false)
-    private String jenis;
-
-    @NotNull
-    @Size(max = 255)
-    @Column(name="asuransi", nullable = false)
-    private String asuransi;
-
-    @NotNull
     @Column(name="tahun", nullable = false)
     private int tahun;
 
@@ -41,10 +29,32 @@ public class JaminanModel implements Serializable{
     @OneToOne(mappedBy = "jaminan")
     private KreditModel kredit;
 
+    @ManyToOne
+    @JoinColumn(name = "id_kendaraan", referencedColumnName = "id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    KendaraanModel kendaraan;
+
+    @ManyToOne
+    @JoinColumn(name = "id_asuransi", referencedColumnName = "id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    AsuransiModel asuransi;
+
     @NotNull
     @Size(max = 255)
     @Column(name="area", nullable = false)
     private String area;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_user")
+    private UserRoleModel user;
+
+    public UserRoleModel getUser() {
+        return this.user;
+    }
+
+    public void setUser(UserRoleModel user) {
+        this.user = user;
+    }
     
     public Long getId() {
         return id;
@@ -52,28 +62,16 @@ public class JaminanModel implements Serializable{
     public void setId(Long id) {
         this.id = id;
     }
-    public String getMerk() {
-        return merk;
-    }
-    public void setMerk(String merk) {
-        this.merk = merk;
-    }
-    public String getJenis() {
-        return jenis;
-    }
-    public void setJenis(String jenis) {
-        this.jenis = jenis;
-    }
     public String getArea() {
         return area;
     }
     public void setArea(String area) {
         this.area = area;
     }
-    public String getAsuransi() {
+    public AsuransiModel getAsuransi() {
         return asuransi;
     }
-    public void setAsuransi(String asuransi) {
+    public void setAsuransi(AsuransiModel asuransi) {
         this.asuransi = asuransi;
     }
     public int getTahun(){
@@ -93,5 +91,11 @@ public class JaminanModel implements Serializable{
     }
     public void setHarga(int harga) {
         this.harga = harga;
+    }
+    public KendaraanModel getKendaraan() {
+        return this.kendaraan;
+    }
+    public void setKendaraan(KendaraanModel kendaraan) {
+        this.kendaraan = kendaraan;
     }
 }

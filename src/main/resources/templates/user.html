@@ -43,7 +43,7 @@
             </a>
             <br><br>
             <div class="row">
-                <div class="col-6">
+                <div class="col-md-6">
                     <div class = "card">
                         <div class = "card-header">
                             <h4 class="mb-4">Integrity</h4>
@@ -68,7 +68,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-md-6">
                     <div class = "card">
                         <div class = "card-header">
                             <h4 class="mb-4">Analisa Keungan</h4>
@@ -81,12 +81,12 @@
                             <table class="table" style="width:100%">
                                 <tbody>
                                     <tr>
-                                        <th style="width: 200px;">Pendapatan </th>
-                                        <td>Rp 100.000.000</td>
+                                        <th style="width: 200px;">Pendapatan Bersih</th>
+                                        <td>Rp 6.000.000</td>
                                     </tr>
                                     <tr>
                                         <th>Angsuran </th>
-                                        <td>Rp 50.000.000</td>
+                                        <td>Rp 4.523.000</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -95,18 +95,42 @@
                 </div>
             </div>
             <br>
-            <div>
-                <a th:href="@{/}">
-                    <button class="btn btn-primary">
-                        <div class="fa fa-mail-reply">
-                        </div>
-                    </button>
-                </a> 
-                <div style="float: right;">
-                    <button class="btn" style="background-color: green; color: white;" >Approve</button>
-                    <button class="btn btn-danger">Reject</button>
-                </div>
-            </div>
+            <table class="table" style="width:50%">
+                <h3 class="mb-4">SURVEY</h3>
+                <tbody>
+                    <tr>
+                        <th style="width: 300px;">Tanggal </th>
+                        <td>07 Januari 2019</td>
+                    </tr>
+                    <tr>
+                        <th>Waktu</th>
+                        <td>10.00 - 13.00</td>
+                    </tr>
+                    <tr>
+                        <th>Nomor Telepon</th>
+                        <td>08571267323</td>
+                    </tr>
+                    <tr>
+                        <th>Hasil Survey</th>
+                        <td>
+                            <div class="row">
+                                <button class="btn" style="background-color: green; color: white;" >Approve</button>
+                                <div style="padding-left: 8px;">
+                                    <button class="btn btn-danger">Reject</button>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                </tbody>
+                
+            </table>
+            <a th:href="@{/}">
+                <button class="btn btn-primary">
+                    <div class="fa fa-mail-reply">
+                    </div>
+                </button>
+            </a> 
         </div>
       </div>
     </div>

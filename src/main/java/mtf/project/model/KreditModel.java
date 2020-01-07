@@ -23,7 +23,7 @@ public class KreditModel implements Serializable{
     private int nominal;
 
     @ManyToOne
-    @JoinColumn(name = "tenor_apr", referencedColumnName = "tenor", nullable = false)
+    @JoinColumn(name = "tenor_id", referencedColumnName = "id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     AprModel apr;
 
@@ -50,12 +50,14 @@ public class KreditModel implements Serializable{
     public void setId(Long id) {
         this.id = id;
     }
-    public int getNominal(){
-        return nominal;
+    public int getNominal() {
+        return this.nominal;
     }
-    public void setNomial(int nominal){
+
+    public void setNominal(int nominal) {
         this.nominal = nominal;
     }
+
     public AprModel getApr() {
         return this.apr;
     }

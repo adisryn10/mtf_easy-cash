@@ -29,11 +29,14 @@ public class AsuransiModel implements Serializable{
     private int bulan;
 
     @OneToMany(mappedBy = "asuransi", fetch = FetchType.LAZY)
-    private List<AngsuranModel> angsuran;
+    private List<JaminanModel> jaminan;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_user")
-    private UserRoleModel user;
+    @JoinColumn(name = "cara_pembayaran")
+    private PembayaranModel pembayaran;
+
+    @OneToMany(mappedBy = "asuransi", fetch = FetchType.LAZY)
+    private List<AngsuranModel> angsuran;
 
     public Long getId() {
         return id;
@@ -65,10 +68,16 @@ public class AsuransiModel implements Serializable{
     public void setAngsuran(List<AngsuranModel> angsuran) {
         this.angsuran = angsuran;
     }
-    public UserRoleModel getUser() {
-        return this.user;
+    public List<JaminanModel> getJaminan() {
+        return this.jaminan;
     }
-    public void setUser(UserRoleModel user) {
-        this.user = user;
+    public void setJaminan(List<JaminanModel> jaminan) {
+        this.jaminan = jaminan;
+    }
+    public PembayaranModel getPembayaran() {
+        return this.pembayaran;
+    }
+    public void setPembayaran(PembayaranModel pembayaran) {
+        this.pembayaran = pembayaran;
     }
 }

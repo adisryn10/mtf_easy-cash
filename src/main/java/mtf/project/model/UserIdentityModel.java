@@ -23,11 +23,6 @@ public class UserIdentityModel implements Serializable{
 
     @NotNull
     @Size(max = 200)
-    @Column(name="nama", nullable = false)
-    private String nama;
-
-    @NotNull
-    @Size(max = 200)
     @Column(name="kk", nullable = false)
     private String kk;
 
@@ -80,7 +75,7 @@ public class UserIdentityModel implements Serializable{
     @Size(max = 200)
     @Column(name="rekeningMandiri", nullable = false)
     private String rekeningMandiri;
-
+    
     @OneToOne(mappedBy = "userIdentity")
     private UserRoleModel user;
 
@@ -89,13 +84,6 @@ public class UserIdentityModel implements Serializable{
     }
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getNama() {
-        return nama;
-    }
-    public void setNama(String nama) {
-        this.nama = nama;
     }
     public String getKk() {
         return this.kk;
@@ -186,6 +174,5 @@ public class UserIdentityModel implements Serializable{
     public void setUser(UserRoleModel user) {
         this.user = user;
     }
-
 }
 
