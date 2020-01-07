@@ -21,8 +21,8 @@ public class PembayaranModel implements Serializable{
     private String nama;
 
     @NotNull
-    @Column(name="konstanta", nullable = false)
-    private int konstanta;
+    @Column(name="taksasiHarga", nullable = false)
+    private float taksasiHarga;
 
     @OneToMany(mappedBy = "pembayaran", fetch = FetchType.LAZY)
     private List<KreditModel> kredit;
@@ -39,11 +39,11 @@ public class PembayaranModel implements Serializable{
     public void setNama(String nama) {
         this.nama = nama;
     }
-    public int getKonstanta(){
-        return konstanta;
+    public float getTaksasiHarga(){
+        return taksasiHarga;
     }
-    public void setKonstanta(int konstanta){
-        this.konstanta = konstanta;
+    public void setTaksasiHarga(float taksasiHarga){
+        this.taksasiHarga = taksasiHarga;
     }
     public List<KreditModel> getKredit() {
         return this.kredit;

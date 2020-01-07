@@ -23,7 +23,7 @@ public class KreditModel implements Serializable{
     private int nominal;
 
     @ManyToOne
-    @JoinColumn(name = "tenor_apr", referencedColumnName = "tenor", nullable = false)
+    @JoinColumn(name = "tenor_id", referencedColumnName = "id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     AprModel apr;
 
