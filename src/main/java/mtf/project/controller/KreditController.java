@@ -20,10 +20,16 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 import mtf.project.model.UserRoleModel;
 import mtf.project.service.FileService;
-import mtf.project.service.JaminanService;
-import mtf.project.service.UserService;
 import mtf.project.model.JaminanModel;
 import mtf.project.model.KreditModel;
+import mtf.project.model.UserIdentityModel;
+import mtf.project.model.UserPersonalModel;
+
+import mtf.project.service.JaminanService;
+import mtf.project.service.UserIdentityService;
+import mtf.project.service.UserPersonalService;
+import mtf.project.service.UserService;
+
 
 @Controller
 public class KreditController{
@@ -36,6 +42,12 @@ public class KreditController{
 
     @Autowired
     JaminanService jaminanService;
+
+    @Autowired
+    UserIdentityService userIdentityService;
+
+    @Autowired
+    UserPersonalService userPersonalService;
 
     @RequestMapping(path = "/admin")
     public String home(Model model){
@@ -92,7 +104,9 @@ public class KreditController{
     }
 
     @RequestMapping(path = "/ajukan", method = RequestMethod.GET)
-    public String ajukan(){
+    public String ajukan(Model model){
+        UserIdentityModel userIdentity = new UserIdentityModel();
+        model.addAttribute("userIdentity", userIdentity);
         return "ajukan";
     }
 
@@ -102,7 +116,7 @@ public class KreditController{
     }
 
     @RequestMapping(path = "/formketiga", method = RequestMethod.GET)
-    public String formketiga(){
+    public String formketiga(Model model){
         return "formketiga";
     }
 
@@ -115,10 +129,26 @@ public class KreditController{
         return "formAngunan";
     }
 
-    @RequestMapping(path = "/submitJaminan", method = RequestMethod.GET)
+    @RequestMapping(path = "/submitJaminan", method = RequestMethod.POST)
     public String submitJaminan(@ModelAttribute JaminanModel barangJaminan, Model model){
         jaminanService.addJaminan(barangJaminan);
+        UserIdentityModel userIdentity = new UserIdentityModel();
+        model.addAttribute("userIdentity", userIdentity);
         return "ajukan";
+    }
+
+    @RequestMapping(path = "/submitDokumen", method = RequestMethod.POST)
+    public String submitDokumen(@ModelAttribute UserIdentityModel user, Model model){
+        UserIdentityModel userIdentity = userIdentityService.addUserIdentity(user);
+        UserPersonalModel userPersonal = new UserPersonalModel();
+        model.addAttribute("userPersonal", userPersonal);
+        return "formketiga";
+    }
+
+    @RequestMapping(path = "/submitDataPribadi", method = RequestMethod.POST)
+    public String submitDataPribadi(@ModelAttribute UserPersonalModel userPersonal){
+        UserPersonalModel userPers = userPersonalService.addDataPribadi(userPersonal);
+        return "index";
     }
 
     @RequestMapping(value = "/addUser", method = RequestMethod.POST)

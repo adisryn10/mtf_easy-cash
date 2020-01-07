@@ -13,7 +13,7 @@
       <div class="row justify-content-center">
         <div class="col-lg-7 mb-5">
 
-          <form action="#" class="p-5 bg-white">
+          <form th:action="@{/submitDataPribadi}" th:object = "${userPesonal}" class="p-5 bg-white" method="POST">
             
             <h2 class="h4 text-black mb-5">(3/3) Data Pribadi</h2> 
 
@@ -23,7 +23,7 @@
                 <div class="col-md-12">
                   <label class="text-black" for="email">Nama Lengkap</label> 
                   <div class="custom-file">
-                    <input type="subject" th:value="Cihuahua" id="tujuanKredit" name="namaLengkap" class="form-control rounded-0">
+                    <input type="text" th:text="Cihuahua" th:field="${userPersonal.namaLengkap}" id="namaLengkap" name="namaLengkap" class="form-control rounded-0">
                     </div>
                 </div>
               </div>
@@ -32,8 +32,8 @@
               
                 <div class="col-md-12">
                   <label class="text-black" for="email">Alamat</label> 
-                  <div class="custom-file">
-                    <input type="subject" th:value="Depok Raya no. 3" id="alamat" name="namaLengkap" class="form-control rounded-0">
+                  <div class="inputan">
+                    <input type="text" th:text="'DepokRaya3'" th:field="${userPersonal.alamat}" id="alamat" name="alamat" class="form-control rounded-0">
                     </div>
                 </div>
               </div>
@@ -43,7 +43,7 @@
                 <div class="col-md-12">
                   <label class="text-black" for="email">Tempat Lahir</label> 
                   <div class="custom-file">
-                    <input type="subject" th:value="New York" id="tujuanKredit" name="tempatLahir" class="form-control rounded-0">
+                    <input type="text" th:value = "'New York'" th:field="${userPersonal.tempatLahir}" id="tujuanKredit" name="tempatLahir" class="form-control rounded-0">
                     </div>
                 </div>
               </div>
@@ -53,7 +53,7 @@
                 <div class="col-md-12">
                   <label class="text-black" for="email">Tanggal Lahir</label> 
                   <div class="custom-file">
-                    <input type="subject" th:value="Cihuahua" id="tujuanKredit" name="namaLengkap" class="form-control rounded-0">
+                    <input type="text" th:text="'Cihuahua@gmail.com'" th:field="${userPersonal.tanggalLahir}" id="tujuanKredit" name="tanggalLahir" class="form-control rounded-0">
                     </div>
                 </div>
               </div>
@@ -61,7 +61,7 @@
               <div class="col-md-12">
                 <label class="text-black" for="email">Pendapatan</label> 
                 <div class="custom-file">
-                  <input type="subject" th:value="1000000" id="penadapatan" name="pendapatan" class="form-control rounded-0">
+                  <input type="text" th:text="1000000" th:field="${userPersonal.pendapatan}" id="penadapatan" name="pendapatan" class="form-control rounded-0">
                   </div>
               </div>
             </div>
