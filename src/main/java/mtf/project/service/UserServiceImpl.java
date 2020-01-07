@@ -50,4 +50,36 @@ public class UserServiceImpl implements UserService {
     public List<UserRoleModel> getUserByRoleNama(String string) {
         return userDb.findByRoleNama(string);
     }
+
+    @Override
+    public UserRoleModel getUserByUsername(String username) {
+        return userDb.findByUsername(username);
+    }
+
+    @Override
+    public void changeIdentity(UserRoleModel user) {
+        UserRoleModel targetUser = userDb.findById(user.getId());
+
+        try{
+            targetUser.setUserIdentity(user.getUserIdentity());
+            userDb.save(targetUser);
+        }
+        catch(NullPointerException nullException){
+            
+        }
+    }
+
+
+    @Override
+    public void changeUser(UserRoleModel user) {
+        UserRoleModel targetUser = userDb.findById(user.getId());
+
+        try{
+            targetUser.setUserPersonal(user.getUserPersonal());
+            userDb.save(targetUser);
+        }
+        catch(NullPointerException nullException){
+            
+        }
+    }
 }

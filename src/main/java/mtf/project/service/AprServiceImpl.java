@@ -8,20 +8,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Service
 @Transactional
-public class UserIdentityServiceImpl implements UserIdentityService {
+public class AprServiceImpl implements AprService {
 
     @Autowired
-    private UserIdentityDb userIdentityDb;
-
+    private AprDb aprDb;
 
     @Override
-    public UserIdentityModel addUserIdentity(UserIdentityModel user) {
-        return userIdentityDb.save(user);
+    public List<AprModel> getAllApr() {
+        // TODO Auto-generated method stub
+        return aprDb.findAll();
     }
-
-
 }

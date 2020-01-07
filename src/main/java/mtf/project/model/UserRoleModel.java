@@ -44,9 +44,6 @@ public class UserRoleModel implements Serializable{
     @OneToOne(mappedBy = "user")
     private AngsuranModel angsuran;
 
-    @OneToOne(mappedBy = "user")
-    private AsuransiModel asuransi;
-
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_user_integrity")
     private UserIntegrityModel userIntegrity;
@@ -60,6 +57,18 @@ public class UserRoleModel implements Serializable{
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_user_identity")
     private UserIdentityModel userIdentity;
+
+    @OneToOne(mappedBy = "user")
+    private JaminanModel jaminan;
+
+	public JaminanModel getJaminan() {
+		return this.jaminan;
+	}
+
+	public void setJaminan(JaminanModel jaminan) {
+		this.jaminan = jaminan;
+	}
+
 
     public String getId() {
         return id;
@@ -103,13 +112,6 @@ public class UserRoleModel implements Serializable{
     }
     public void setAngsuran(AngsuranModel angsuran) {
         this.angsuran = angsuran;
-    }
-    public AsuransiModel getAsuransi() {
-        return this.asuransi;
-    }
-
-    public void setAsuransi(AsuransiModel asuransi) {
-        this.asuransi = asuransi;
     }
     public UserIntegrityModel getUserIntegrity() {
         return this.userIntegrity;
