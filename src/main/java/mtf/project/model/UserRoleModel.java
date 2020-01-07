@@ -51,6 +51,12 @@ public class UserRoleModel implements Serializable{
     @JoinColumn(name = "id_user_integrity")
     private UserIntegrityModel userIntegrity;
 
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_user_personal")
+    private UserPersonalModel userPersonal;
+
+
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_user_identity")
     private UserIdentityModel userIdentity;
@@ -117,4 +123,13 @@ public class UserRoleModel implements Serializable{
     public void setUserIdentity(UserIdentityModel userIdentity) {
         this.userIdentity = userIdentity;
     }
+
+    public UserPersonalModel getUserPersonal() {
+        return this.userPersonal;
+    }
+    public void setUserPersonal(UserPersonalModel userPersonal) {
+        this.userPersonal = userPersonal;
+    }
+
+    
 }
