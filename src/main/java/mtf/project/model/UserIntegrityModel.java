@@ -23,8 +23,8 @@ public class UserIntegrityModel implements Serializable{
     @Column(name="riwayatKredit", nullable = false)
     private int riwayatKredit;
 
-    @OneToOne(mappedBy = "userIntegrity")
-    private UserRoleModel user;
+    @OneToMany(mappedBy = "userIntegrity")
+    private List<UserRoleModel> user;
 
     public Long getId() {
         return id;
@@ -44,10 +44,10 @@ public class UserIntegrityModel implements Serializable{
     public void setRiwayatKredit(int riwayatKredit){
         this.riwayatKredit = riwayatKredit;
     }
-    public UserRoleModel getUser() {
+    public List<UserRoleModel> getUser() {
         return this.user;
     }
-    public void setUser(UserRoleModel user) {
+    public void setUser(List<UserRoleModel> user) {
         this.user = user;
     }
 }

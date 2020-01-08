@@ -20,15 +20,10 @@ public class AngsuranModel implements Serializable{
 
     @NotNull
     @Column(name="nominal", nullable = false)
-    private int nominal;
+    private Double nominal;
 
     @OneToOne(mappedBy = "angsuran")
     private KreditModel kredit;
-
-    @ManyToOne
-    @JoinColumn(name = "id_asuransi", referencedColumnName = "id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    AsuransiModel asuransi;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_user")
@@ -40,10 +35,10 @@ public class AngsuranModel implements Serializable{
     public void setId(Long id) {
         this.id = id;
     }
-    public int getNominal(){
+    public Double getNominal(){
         return nominal;
     }
-    public void setNomial(int nominal){
+    public void setNominal(Double nominal){
         this.nominal = nominal;
     }
     public KreditModel getKredit() {
@@ -52,12 +47,6 @@ public class AngsuranModel implements Serializable{
 
     public void setKredit(KreditModel kredit) {
         this.kredit = kredit;
-    }
-    public AsuransiModel getAsuransi() {
-        return this.asuransi;
-    }
-    public void setAsuransi(AsuransiModel asuransi) {
-        this.asuransi = asuransi;
     }
     public UserRoleModel getUser() {
         return this.user;

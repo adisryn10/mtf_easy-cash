@@ -26,9 +26,6 @@ public class JaminanModel implements Serializable{
     @Column(name="harga", nullable = false)
     private int harga;
 
-    @OneToOne(mappedBy = "jaminan")
-    private KreditModel kredit;
-
     @ManyToOne
     @JoinColumn(name = "id_kendaraan", referencedColumnName = "id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
@@ -79,12 +76,6 @@ public class JaminanModel implements Serializable{
     }
     public void setTahun(int tahun){
         this.tahun = tahun;
-    }
-    public KreditModel getKredit() {
-        return this.kredit;
-    }
-    public void setKredit(KreditModel kredit) {
-        this.kredit = kredit;
     }
     public int getHarga() {
         return this.harga;

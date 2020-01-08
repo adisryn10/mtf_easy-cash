@@ -13,7 +13,7 @@
       <div class="row justify-content-center">
         <div class="col-lg-7 mb-5">
 
-            <form th:action="@{/daftar-angsuran}" th:object="${kreditModel}" class="p-5 bg-white" method=POST>
+            <form th:action="@{/simulasi/daftar-angsuran/}" th:object="${kreditModel}" class="p-5 bg-white" method=POST>
             
                 <h2 class="h4 text-black mb-5">(2) Nominal Kredit</h2> 
             
@@ -21,7 +21,7 @@
                   
                   <div class="col-md-12">
                     <label class="text-black" for="merk">Harga Max</label> 
-                    <input type="int" th:value="${hargaMax}" class="form-control rounded-0" disabled>
+                    <input type="number" th:value="${hargaMax}" class="form-control rounded-0" disabled>
                   </div>
                 </div>  
 

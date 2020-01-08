@@ -35,7 +35,6 @@
                             <tr>
                                 <th>Nomor</th>
                                 <th>Nama</th>
-                                <th>Nomor KTP</th>
                                 <th>Status Kredit</th>
                                 <th>Manage</th>
                             </tr>
@@ -43,11 +42,10 @@
                         <tbody>
                             <tr th:each="user, counter : ${listUser}">
                                 <td th:text="${counter.count}"></td>
-                                <td th:text="${user.userIdentity.nama}"></td>
-                                <td th:text="${user.userIdentity.ktp}"></td>
-                                <td>Approved</td>
+                                <td th:text="${user.userPersonal.namaLengkap}"></td>
+                                <td th:text="${user.kredit.status}"></td>
                                 <td>
-                                    <a th:href="@{/user/manage/}+${user.id}">
+                                    <a th:href="@{admin/user/manage/}+${user.id}">
                                         <button class="btn btn-primary">
                                             Manage
                                         </button>

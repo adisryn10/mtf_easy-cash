@@ -44,8 +44,9 @@ public class UserRoleModel implements Serializable{
     @OneToOne(mappedBy = "user")
     private AngsuranModel angsuran;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_user_integrity")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_user_integrity", referencedColumnName = "id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private UserIntegrityModel userIntegrity;
 
 
