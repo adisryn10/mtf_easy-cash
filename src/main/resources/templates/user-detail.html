@@ -17,63 +17,125 @@
       <!-- Page Content  -->
       <div id="content" class="p-4 p-md-5 pt-5">
         <div class="container-fluid">
-            <h1 class="mb-4">USER DETAIL</h1>
-            <table class="table" style="width:75%">
-                <tbody>
-                    <tr>
-                        <th style="width: 300px;">Nama </th>
-                        <td th:text="${user.userIdentity.nama}"></td>
-                    </tr>
-                    <tr>
-                        <th>KTP </th>
-                        <td th:text="${user.userIdentity.ktp}"></td>
-                    </tr>
-                    <tr>
-                        <th>KK </th>
-                        <td th:text="${user.userIdentity.kk}"></td>
-                    </tr>
-                    <tr>
-                        <th>NPWP </th>
-                        <td th:text="${user.userIdentity.npwp}"></td>
-                    </tr>
-                    <tr>
-                        <th>BPKB </th>
-                        <td th:text="${user.userIdentity.bpkb}"></td>
-                    </tr>
-                    <tr>
-                        <th>BKR</th>
-                        <td th:text="${user.userIdentity.bkr}"></td>
-                    </tr>
-                    <tr>
-                        <th>STNK</th>
-                        <td th:text="${user.userIdentity.stnk}"></td>
-                    </tr>
-                    <tr>
-                        <th>Fraktur</th>
-                        <td th:text="${user.userIdentity.fraktur}"></td>
-                    </tr>
-                    <tr>
-                        <th>Tujuan Kredit </th>
-                        <td th:text="${user.userIdentity.tujuan}"></td>
-                    </tr>
-                    <tr>
-                        <th>Rancangan Anggaran</th>
-                        <td th:text="${user.userIdentity.rancanganAnggaran}"></td>
-                    </tr>
-                    <tr>
-                        <th>Rekening Koran</th>
-                        <td th:text="${user.userIdentity.rekeningKoran}"></td>
-                    </tr>
-                    <tr>
-                        <th>Rekening Mandiri</th>
-                        <td th:text="${user.userIdentity.rekeningMandiri}"></td>
-                    </tr>
-    
-                    
-                </tbody>
-                
-            </table>           
-            <a th:href="@{/}">
+            <h1 class="mb-4">CUSTOMER DETAIL</h1>
+            <div class="col-md-12">
+                <div class = "card">
+                    <div class = "card-header">
+                        <h2 class="mb-4">Account</h2>
+                    </div>
+                    <div class = "card-body">
+                        <table class="table" style="width:100%">
+                            <tbody>
+                                <tr>
+                                    <th style="width: 300px;">Nama </th>
+                                    <td th:text="${user.userPersonal.namaLengkap}"></td>
+                                </tr>
+                                <tr>
+                                    <th>Tanggal Lahir </th>
+                                    <td th:text="${user.userPersonal.tanggalLahir}"></td>
+                                </tr>
+                                <tr>
+                                    <th>Tempat Lahir </th>
+                                    <td th:text="${user.userPersonal.tempatLahir}"></td>
+                                </tr>
+                                <tr>
+                                    <th>Alamat </th>
+                                    <td th:text="${user.userPersonal.alamat}"></td>
+                                </tr>
+                                <tr>
+                            </tbody>
+                        </table>           
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <br><br>
+                <div class = "card">
+                    <div class = "card-header">
+                        <h2 class="mb-4">Dokumen Identitas</h2>
+                    </div>
+                    <div class = "card-body">
+                        <table class="table" style="width:100%">
+                            <tbody>
+                                <tr>
+                                    <th style="width: 300px;">KTP </th>
+                                    <td><a href="/" th:text="${user.userIdentity.ktp}"></a></td>
+                                </tr>
+                                <tr>
+                                    <th>KK </th>
+                                    <td><a href="/"th:text="${user.userIdentity.kk}"></a></td>
+                                </tr>
+                                <tr>
+                                    <th>NPWP </th>
+                                    <td><a href="/"th:text="${user.userIdentity.npwp}"></a></td>
+                                </tr>
+                                <tr>
+                                    <th>BPKB </th>
+                                    <td><a href="/"th:text="${user.userIdentity.bpkb}"></a></td>
+                                </tr>
+                                <tr>
+                                    <th>BKR </th>
+                                    <td><a href="/"th:text="${user.userIdentity.bkr}"></a></td>
+                                </tr>
+                                <tr>
+                                    <th>STNK </th>
+                                    <td><a href="/"th:text="${user.userIdentity.stnk}"></a></td>
+                                </tr>
+                                <tr>
+                                    <th>Fraktur </th>
+                                    <td><a href="/"th:text="${user.userIdentity.fraktur}"></a></td>
+                                </tr>
+                                <tr>
+                                    <th>Rancangan Anggaran </th>
+                                    <td><a href="/"th:text="${user.userIdentity.rancanganAnggaran}"></a></td>
+                                </tr>
+                                <tr>
+                                    <th>KK </th>
+                                    <td><a href="/"th:text="${user.userIdentity.rekeningKoran}"></a></td>
+                                </tr>
+                                <tr>
+                                    <th>KK </th>
+                                    <td><a href="/"th:text="${user.userIdentity.rekeningMandiri}"></a></td>
+                                </tr>
+                            </tbody>
+                        </table>           
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <br><br>
+                <div class = "card">
+                    <div class = "card-header">
+                        <h2 class="mb-4">Data Kredit</h2>
+                    </div>
+                    <div class = "card-body">
+                        <table class="table" style="width:100%">
+                            <tbody>
+                                <tr>
+                                    <th style="width: 300px;">Status Kredit </th>
+                                    <td th:text="${user.kredit.status}"></td>
+                                </tr>
+                                <tr>
+                                    <th>Nominal Kredit </th>
+                                    <td th:text="${user.kredit.nominal}"></td>
+                                </tr>
+                                <tr>
+                                    <th>Waktu peminjaman (tenor)</th>
+                                    <td th:text="${user.kredit.apr.tenor}"></td>
+                                </tr>
+                                <tr>
+                                    <th>Angsuran per Bulan </th>
+                                    <td th:text="${user.kredit.angsuran.nominal}"></td>
+                                </tr>
+                            </tbody>
+                        </table>          
+                    </div>
+                </div>
+            </div>
+            <br>
+            <a th:href="@{/admin}">
                 <button class="btn btn-primary">
                     <div class="fa fa-mail-reply">
                     </div>

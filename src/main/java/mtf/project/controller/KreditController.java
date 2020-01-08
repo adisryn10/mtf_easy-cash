@@ -4,40 +4,25 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.WebAuthenticationDetails;
+import org.springframework.security.web.savedrequest.RequestCache;
 
-import mtf.project.model.UserRoleModel;
-import mtf.project.service.AprService;
-import mtf.project.service.AsuransiService;
-import mtf.project.service.FileService;
-import mtf.project.model.AngsuranModel;
-import mtf.project.model.AprModel;
-import mtf.project.model.AsuransiModel;
-import mtf.project.model.JaminanModel;
-import mtf.project.model.KendaraanModel;
-import mtf.project.model.KreditModel;
-import mtf.project.model.UserIdentityModel;
-import mtf.project.model.UserPersonalModel;
-
-import mtf.project.service.JaminanService;
-import mtf.project.service.KendaraanService;
-import mtf.project.service.UserIdentityService;
-import mtf.project.service.UserPersonalService;
-import mtf.project.service.UserService;
+import mtf.project.service.*;
+import mtf.project.model.*;
 
 
 @Controller
@@ -53,6 +38,9 @@ public class KreditController{
     JaminanService jaminanService;
 
     @Autowired
+    AngsuranService angsuranService;
+
+    @Autowired
     UserIdentityService userIdentityService;
 
     @Autowired
@@ -62,62 +50,24 @@ public class KreditController{
     KendaraanService kendaraanService;
 
     @Autowired
+    PembayaranService pembayaranService;
+
+    @Autowired
+    KreditService kreditService;
+
+    @Autowired
     UserPersonalService userPersonalService;
+
+    @Autowired
+    UserIntegrityService userIntegrityService;
 
     @Autowired
     AprService aprService;
 
-    @RequestMapping(path = "/admin")
-    public String home(Model model){
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        for (GrantedAuthority authority: auth.getAuthorities()){
-            model.addAttribute("role", authority.getAuthority());
-        }
-        List<UserRoleModel> listUser = userService.getUserByRoleNama("Customer");
-        model.addAttribute("listUser", listUser);
-        return "admin";
-    }
-
-    @RequestMapping(path = "/user/manage/{idUser}", method = RequestMethod.GET)
-    public String userManage(@PathVariable String idUser, Model model){
-        UserRoleModel user = userService.getUserById(idUser);
-        model.addAttribute("user", user);
-        return "user";
-    }
-
-    @RequestMapping(path = "/user/detail/{idUser}", method = RequestMethod.GET)
-    public String userDetail(@PathVariable String idUser, Model model){
-        UserRoleModel user = userService.getUserById(idUser);
-        model.addAttribute("user", user);
-        return "user-detail";
-    }
-
-    @PostMapping("/uploadFile")
-    public String uploadFile(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
-
-        fileService.uploadFile(file);
-
-        redirectAttributes.addFlashAttribute("message",
-            "You successfully uploaded " + file.getOriginalFilename() + "!");
-
-        return "redirect:/";
-    }
-    @RequestMapping(path = "/register", method = RequestMethod.GET)
-    public String register(){
-        return "register";
-    }
-    @RequestMapping(path = "/", method = RequestMethod.GET)
-    public String index(){
-        return "index";
-    }
-
-    @RequestMapping(path = "/login", method = RequestMethod.GET)
-    public String login(){
-        return "login";
-    }
-
     @RequestMapping(path = "/account", method = RequestMethod.GET)
-    public String account(){
+    public String account(Authentication auth, Model model){
+        UserRoleModel user = userService.getUserByUsername(auth.getName());
+        model.addAttribute("user", user);
         return "account";
     }
 
@@ -128,24 +78,22 @@ public class KreditController{
     //     return "ajukan";
     // }
 
-    @RequestMapping(path = "/form", method = RequestMethod.GET)
-    public String form(){
-        return "form";
-    }
+    // @RequestMapping(path = "/form", method = RequestMethod.GET)
+    // public String form(){
+    //     return "form";
+    // }
 
-    @RequestMapping(path = "/formketiga", method = RequestMethod.GET)
-    public String formketiga(Model model){
-        return "formketiga";
-    }
+    // @RequestMapping(path = "/formketiga", method = RequestMethod.GET)
+    // public String formketiga(Model model){
+    //     return "formketiga";
+    // }
 
-    @RequestMapping(path = "/formAngunan", method = RequestMethod.GET)
+    @RequestMapping(path = "/form-jaminan", method = RequestMethod.GET)
     public String formAngunan(Model model){
         List<KendaraanModel> listKendaraan = kendaraanService.getAllKendaraan();
         List<AsuransiModel> listAsuransi  = asuransiService.getAllAsuransi();
-        KreditModel kreditModel = new KreditModel();
 
         JaminanModel jaminanModel = new JaminanModel();
-        jaminanModel.setKredit(kreditModel);
 
         model.addAttribute("listKendaraan", listKendaraan);
         model.addAttribute("listAsuransi", listAsuransi);
@@ -153,7 +101,7 @@ public class KreditController{
         return "formAngunan";
     }
 
-    @RequestMapping(path = "/submitJaminan", method = RequestMethod.POST)
+    @RequestMapping(path = "/form-nominal", method = RequestMethod.POST)
     public String submitJaminan(@ModelAttribute JaminanModel barangJaminan, Authentication auth, Model model){
 
         UserRoleModel user = userService.getUserByUsername(auth.getName());
@@ -179,7 +127,7 @@ public class KreditController{
         return "form-nominal";
     }
 
-    @RequestMapping(path = "/submitKredit", method = RequestMethod.POST)
+    @RequestMapping(path = "/daftar-angsuran", method = RequestMethod.POST)
     public String submitKredit(@ModelAttribute KreditModel kreditModel, Model model){
         System.out.println("Kredit nominal : " + kreditModel.getNominal());
 
@@ -191,7 +139,7 @@ public class KreditController{
         List<String> listAngsuranAddb = new ArrayList<String>();
         int counter = 0;
 
-        DecimalFormat f = new DecimalFormat("##.00");
+        DecimalFormat f = new DecimalFormat("##");
 
         for (AprModel apr : listApr){
             String angsuran = f.format(perhitungan(kreditModel.getNominal(), apr.getRate(), apr.getTenor()));
@@ -206,11 +154,18 @@ public class KreditController{
             counter++;
            
         }
+        KreditModel newKredit = new KreditModel();
+        newKredit.setNominal(kreditModel.getNominal());
+        newKredit.setPembayaran(new PembayaranModel());
+
         model.addAttribute("listAngsuranAddm", listAngsuranAddm);
         model.addAttribute("listAprAddm", listAprAddm);
 
         model.addAttribute("listAngsuranAddb", listAngsuranAddb);
         model.addAttribute("listAprAddb", listAprAddb);
+
+        model.addAttribute("kreditModel", newKredit);
+        model.addAttribute("nominalKredit", kreditModel.getNominal());
         
         return "daftar-angsuran";
     }
@@ -228,7 +183,7 @@ public class KreditController{
     }
 
 
-    @RequestMapping(path = "/submitDokumen", method = RequestMethod.POST)
+    @RequestMapping(path = "/form-data-diri", method = RequestMethod.POST)
     public String submitDokumen(Authentication auth, @ModelAttribute UserIdentityModel user, Model model){
         UserIdentityModel userIdentity = userIdentityService.addUserIdentity(user);
         UserRoleModel currentUser = userService.getUserByUsername(auth.getName());
@@ -238,32 +193,65 @@ public class KreditController{
 
         UserPersonalModel userPersonal = new UserPersonalModel();
         model.addAttribute("userPersonal", userPersonal);
-        return "formketiga";
+        return "form-data-diri";
     }
 
-    @RequestMapping(path = "/submitDataPribadi", method = RequestMethod.POST)
-    public String submitDataPribadi(Authentication auth, @ModelAttribute UserPersonalModel userPersonal){
+    @RequestMapping(path = "/finish", method = RequestMethod.POST)
+    public String submitDataPribadi(Authentication auth, @ModelAttribute UserPersonalModel userPersonal, Model model){
         UserRoleModel user = userService.getUserByUsername(auth.getName());
         UserPersonalModel userPers = userPersonalService.addDataPribadi(userPersonal);
         user.setUserPersonal(userPers);
 
+        Double pendapatanBersih = Double.valueOf(user.getUserPersonal().getPendapatan());
+        Double angsuranPerBulan = user.getAngsuran().getNominal();
+        KreditModel kreditModel = user.getKredit();
+
+        if(pendapatanBersih >= angsuranPerBulan){
+            kreditModel.setStatus("Survey");
+        }
+        else{
+            kreditModel.setStatus("Under Review");
+        }
+        kreditService.changeKreditStatus(kreditModel);
+
         userService.changeUser(user);
-
-        return "index";
-    }
-
-    @RequestMapping(value = "/addUser", method = RequestMethod.POST)
-    public String addUserSubmit(@ModelAttribute UserRoleModel user, Model model){
-        userService.addUser(user);
         model.addAttribute("user", user);
-        return "index";
+
+        return "account";
     }
 
-    @RequestMapping(value = "/ajukan/{angsuran}", method = RequestMethod.GET)
-    public String ajukanAngsuran(Authentication auth, @PathVariable String angsuran,  Model model){
+    @RequestMapping(value = "/add-user", method = RequestMethod.POST)
+    public String addUserSubmit(@ModelAttribute UserRoleModel user, Model model, HttpServletRequest request, HttpServletResponse response){
+        UserIntegrityModel userIntegrity = userIntegrityService.getIntegrityById(Long.valueOf(2));
+        user.setUserIntegrity(userIntegrity);
+        userService.addUser(user);
+        return "login";
+    }
+
+    
+    @RequestMapping(value = "/ajukan/{angsuran}/{idPembayaran}", method = RequestMethod.POST)
+    public String ajukanAngsuran(Authentication auth, @PathVariable Double angsuran, @PathVariable Long idPembayaran, KreditModel kreditModel,   Model model){
+
         UserRoleModel user = userService.getUserByUsername(auth.getName());
-        KreditModel kreditUser = new KreditModel();
-        kreditUser.setNominal(Math.round(Float.valueOf(angsuran)));
+
+        AngsuranModel angsuranModel = new AngsuranModel();
+        angsuranModel.setNominal(Double.valueOf(angsuran));
+        angsuranModel.setUser(user);
+
+        angsuranService.addAngsuran(angsuranModel);
+
+        PembayaranModel pembayaran = pembayaranService.getPembayaranById(Long.valueOf(2));
+        kreditModel.setPembayaran(pembayaran);
+        kreditModel.setUser(user);
+        kreditModel.setAngsuran(angsuranModel);
+        kreditModel.setStatus("Submitted");
+
+        List<AprModel> aprList = aprService.getAllApr();
+
+        kreditModel.setApr(aprList.get(2));
+
+        kreditService.addKreditModel(kreditModel);
+
         model.addAttribute("user", user);
         UserIdentityModel userIdentity = new UserIdentityModel();
         model.addAttribute("userIdentity", userIdentity);

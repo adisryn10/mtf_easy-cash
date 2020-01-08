@@ -18,11 +18,11 @@
       <div id="content" class="p-4 p-md-5 pt-5">
         <div class="container-fluid">
             <h1 class="mb-4">MANAGE USER DATA</h1>
-            <table class="table" style="width:50%">
+            <table class="table" style="width:100%">
                 <tbody>
                     <tr>
                         <th style="width: 300px;">Nama </th>
-                        <td th:text="${user.userIdentity.nama}"></td>
+                        <td th:text="${user.userPersonal.namaLengkap}"></td>
                     </tr>
                     <tr>
                         <th>Username </th>
@@ -36,7 +36,7 @@
                 </tbody>
                 
             </table>
-            <a th:href="@{/user/detail/}+${user.id}">
+            <a th:href="@{/admin/user/detail/}+${user.id}">
                 <button class="btn btn-primary">
                     Show Details
                 </button>
@@ -72,21 +72,26 @@
                     <div class = "card">
                         <div class = "card-header">
                             <h4 class="mb-4">Analisa Keungan</h4>
-                            <div style="float: right;">
+                            <div  style="float: right;">
                                 Status : 
-                                <div  class="fa fa-check mr-3"></div>
+                                <div  th:if = "${repayable}" class="fa fa-check mr-3"></div>
+                                <div  th:unless = "${repayable}" class="fa fa-close mr-3"></div>
                             </div>  
                         </div>
                         <div class = "card-body">
                             <table class="table" style="width:100%">
                                 <tbody>
                                     <tr>
+                                        <th style="width: 200px;">Total Kredit</th>
+                                        <td th:text="${user.kredit.nominal}"></td>
+                                    </tr>
+                                    <tr>
                                         <th style="width: 200px;">Pendapatan Bersih</th>
-                                        <td>Rp 6.000.000</td>
+                                        <td th:text="${pendapatanBersih}"></td>
                                     </tr>
                                     <tr>
                                         <th>Angsuran </th>
-                                        <td>Rp 4.523.000</td>
+                                        <td th:text="${angsuran}"></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -95,37 +100,65 @@
                 </div>
             </div>
             <br>
-            <table class="table" style="width:50%">
-                <h3 class="mb-4">SURVEY</h3>
-                <tbody>
-                    <tr>
-                        <th style="width: 300px;">Tanggal </th>
-                        <td>07 Januari 2019</td>
-                    </tr>
-                    <tr>
-                        <th>Waktu</th>
-                        <td>10.00 - 13.00</td>
-                    </tr>
-                    <tr>
-                        <th>Nomor Telepon</th>
-                        <td>08571267323</td>
-                    </tr>
-                    <tr>
-                        <th>Hasil Survey</th>
-                        <td>
-                            <div class="row">
-                                <button class="btn" style="background-color: green; color: white;" >Approve</button>
+            <div th:if="!${rejectOrApprove}">
+                <div th:if = "${repayable}">
+                    <table class="table" style="width:100%">
+                        <h3 class="mb-4">SURVEY</h3>
+                        <tbody>
+                            <tr>
+                                <th style="width: 300px;">Tanggal </th>
+                                <td th:text="${user.userPersonal.jadwalSurvey}"></td>
+                            </tr>
+    
+                        </tbody>
+                    </table>
+                    <div style="float: right;">
+                        <div style="float: right;">
+                            <div>Klik approve apabila telah lolos survey</div>
+                            <div class="row" style="float: right;">
+                                <div>
+                                    <a th:href="@{/admin/approve/} + ${user.id}">
+                                        <button class="btn" style="background-color: green; color: white;" >Approve</button>
+                                    </a>
+                                </div>
                                 <div style="padding-left: 8px;">
-                                    <button class="btn btn-danger">Reject</button>
+                                    <a th:href="@{/admin/reject/} + ${user.id}">
+                                        <button class="btn btn-danger">Reject</button>
+                                    </a>
                                 </div>
                             </div>
-                        </td>
-                    </tr>
-                    
-                </tbody>
-                
-            </table>
-            <a th:href="@{/}">
+                        </div>
+                    </div>
+                </div>
+                <div style="float: right;">
+                    <div style="float: right;" th:unless = "${repayable}">
+                        <div >Klik survey apabila customer lolos pertimbangan </div >
+                            <div  class="row"  style="float: right;">
+                                <div>
+                                    <a th:href="@{/admin/conduct/}+${user.id}">
+                                        <button class="btn btn-primary" type="submit">
+                                            Survey
+                                        </button>
+                                    </a>
+                                </div>
+                            
+                                <div style="padding-left: 8px;">
+                                    <a th:href="@{/admin/reject/} + ${user.id}">
+                                        <button class="btn btn-danger">Reject</button>
+                                    </a>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+           
+
+           
+            
+
+            <br><br>
+          
+            <a th:href="@{/admin}">
                 <button class="btn btn-primary">
                     <div class="fa fa-mail-reply">
                     </div>

@@ -37,13 +37,20 @@ public class KreditModel implements Serializable{
     private AngsuranModel angsuran;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_jaminan")
-    private JaminanModel jaminan;
-
-    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_user")
     private UserRoleModel user;
 
+    @NotNull
+    @Size(max = 200)
+    @Column(name="status", nullable = false)
+    private String status;
+
+    public String getStatus() {
+        return this.status;
+    }
+    public void setStatus(String status) {
+        this.status = status;
+    }
     public Long getId() {
         return id;
     }
@@ -77,12 +84,6 @@ public class KreditModel implements Serializable{
 
     public void setAngsuran(AngsuranModel angsuran) {
         this.angsuran = angsuran;
-    }
-    public JaminanModel getJaminan() {
-        return this.jaminan;
-    }
-    public void setJaminan(JaminanModel jaminan) {
-        this.jaminan = jaminan;
     }
     public UserRoleModel getUser() {
         return this.user;

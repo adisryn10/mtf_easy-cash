@@ -20,6 +20,16 @@ public class UserPersonalModel implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+
        
     @Column(name="namaLengkap", nullable = true)
     private String namaLengkap;
@@ -87,6 +97,14 @@ public class UserPersonalModel implements Serializable{
     	this.userRole = userRole;
     }
 
+    @Column(name="jadwalSurvey", nullable = false)
+    private String jadwalSurvey;
 
-    
+    public String getJadwalSurvey() {
+        return this.jadwalSurvey;
+    }
+
+    public void setJadwalSurvey(String jadwalSurvey) {
+        this.jadwalSurvey = jadwalSurvey;
+    }    
 }
