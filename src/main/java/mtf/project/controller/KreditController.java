@@ -221,7 +221,7 @@ public class KreditController{
     }
 
     @RequestMapping(value = "/add-user", method = RequestMethod.POST)
-    public String addUserSubmit(@ModelAttribute UserRoleModel user, Model model, HttpServletRequest request, HttpServletResponse response){
+    public String addUserSubmit(@ModelAttribute UserRoleModel user, Model model){
         UserIntegrityModel userIntegrity = userIntegrityService.getIntegrityById(Long.valueOf(2));
         user.setUserIntegrity(userIntegrity);
         userService.addUser(user);
