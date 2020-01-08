@@ -68,7 +68,7 @@ public class AdminController{
         for (GrantedAuthority authority: auth.getAuthorities()){
             model.addAttribute("role", authority.getAuthority());
         }
-        List<UserRoleModel> listUser = userService.getUserByRoleNama("Customer");
+        List<UserRoleModel> listUser = userService.getUserByRoleNama("CUSTOMER");
         model.addAttribute("listUser", listUser);
         return "admin";
     }
