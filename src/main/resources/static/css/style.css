@@ -8271,11 +8271,11 @@ h1, h2, h3, h4, h5,
       height: 40px;
       border-radius: 50%; }
       #sidebar .custom-menu .btn.btn-primary {
-        background: #393c7f;
-        border-color: #393c7f; }
+        background: #1F3C78;
+        border-color: #1F3C78; }
         #sidebar .custom-menu .btn.btn-primary:hover, #sidebar .custom-menu .btn.btn-primary:focus {
-          background: #393c7f !important;
-          border-color: #393c7f !important; }
+          background: #1F3C78 !important;
+          border-color: #1F3C78 !important; }
 
 a[data-toggle="collapse"] {
   position: relative; }
