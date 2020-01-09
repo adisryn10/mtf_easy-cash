@@ -69,7 +69,13 @@ public class AdminController{
             model.addAttribute("role", authority.getAuthority());
         }
         List<UserRoleModel> listUser = userService.getUserByRoleNama("CUSTOMER");
-        model.addAttribute("listUser", listUser);
+        List<UserRoleModel> userLengkap = new ArrayList<UserRoleModel>();
+        for(UserRoleModel user : listUser){
+            if(user.getUserPersonal() != null){
+                userLengkap.add(user);
+            }
+        }
+        model.addAttribute("listUser", userLengkap);
         return "admin";
     }
 
