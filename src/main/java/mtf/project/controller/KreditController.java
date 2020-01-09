@@ -91,7 +91,11 @@ public class KreditController{
     @RequestMapping(path = "/form-jaminan", method = RequestMethod.GET)
     public String formAngunan(Model model){
         List<KendaraanModel> listKendaraan = kendaraanService.getAllKendaraan();
-        List<AsuransiModel> listAsuransi  = asuransiService.getAllAsuransi();
+        List<AsuransiModel> asuransiDaftar  = asuransiService.getAllAsuransi();
+        List<AsuransiModel> listAsuransi = new ArrayList<AsuransiModel>();
+
+        listAsuransi.add(asuransiDaftar.get(1));
+        listAsuransi.add(asuransiDaftar.get(5));
 
         JaminanModel jaminanModel = new JaminanModel();
 
@@ -229,8 +233,8 @@ public class KreditController{
     }
 
     
-    @RequestMapping(value = "/ajukan/{angsuran}/{idPembayaran}", method = RequestMethod.POST)
-    public String ajukanAngsuran(Authentication auth, @PathVariable Double angsuran, @PathVariable Long idPembayaran, KreditModel kreditModel,   Model model){
+    @RequestMapping(value = "/ajukan/{angsuran}", method = RequestMethod.POST)
+    public String ajukanAngsuran(Authentication auth, @PathVariable Double angsuran, KreditModel kreditModel,   Model model){
 
         UserRoleModel user = userService.getUserByUsername(auth.getName());
 
