@@ -8133,7 +8133,7 @@ a.text-dark:hover, a.text-dark:focus {
     border-color: #dee2e6; } }
 
 body {
-  font-family: "Poppins", Arial, sans-serif;
+  font-family: "Montserrat", Arial, sans-serif;
   font-size: 14px;
   line-height: 1.8;
   font-weight: normal;
@@ -8144,7 +8144,7 @@ a {
   -webkit-transition: .3s all ease;
   -o-transition: .3s all ease;
   transition: .3s all ease;
-  color: #494ca2; }
+  color: #1F3C78; }
   a:hover, a:focus {
     text-decoration: none !important;
     outline: none !important;
@@ -8165,7 +8165,7 @@ h1, h2, h3, h4, h5,
 .h1, .h2, .h3, .h4, .h5 {
   line-height: 1.5;
   font-weight: 400;
-  font-family: "Poppins", Arial, sans-serif;
+  font-family: "Montserrat", Arial, sans-serif;
   color: #000; }
 
 .ftco-section {
@@ -8209,7 +8209,7 @@ h1, h2, h3, h4, h5,
 #sidebar {
   min-width: 270px;
   max-width: 270px;
-  background: #494ca2;
+  background: #1F3C78;
   color: #fff;
   -webkit-transition: all 0.3s;
   -o-transition: all 0.3s;
@@ -8302,11 +8302,11 @@ a[data-toggle="collapse"] {
   transition: all 0.3s; }
 
 .btn.btn-primary {
-  background: #494ca2;
-  border-color: #494ca2; }
+  background: #1F3C78;
+  border-color: #1F3C78; }
   .btn.btn-primary:hover, .btn.btn-primary:focus {
-    background: #494ca2 !important;
-    border-color: #494ca2 !important; }
+    background: #1F3C78 !important;
+    border-color: #1F3C78 !important; }
 
 .footer p {
   color: rgba(255, 255, 255, 0.5); }
