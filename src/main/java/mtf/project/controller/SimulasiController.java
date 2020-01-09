@@ -106,14 +106,10 @@ public class SimulasiController{
     }
 
     public double perhitungan(int pv, double rate, int tenor){
-        double pembilang = (pv * (rate/100) / tenor) * Math.pow((1+(rate/100)), tenor);
-        double a =  (pv * (rate/100) / tenor);
-        double b = Math.pow((1+(rate/100)), tenor);
-        System.out.println("pembilang pv " + pv);
-        System.out.println("pembilang b " + b);
-        double penyebut = Math.pow((1+(rate/100)), tenor) - 1;
-        System.out.println("penyebut " + penyebut);
-        double result = pembilang/penyebut;
+        double pembilang = pv * (rate) / tenor;
+        double pangkat = Math.pow((1+(rate)), tenor);
+        double penyebut = 1 -  (1/pangkat);
+        double result = pembilang/penyebut/10;
         return result;
     }
 }
