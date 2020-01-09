@@ -31,15 +31,13 @@
                         <tbody>
                            
                             <tr th:each="angsurans, counter : ${listAngsuranAddm}">
-                                <td th:text="${counter.count}"> 
-                                    <input type = "hidden" th:field="${kreditModel.apr}" th:value="${listAprAddm[counter.count - 1]"/>
-                                </td>
+                                <td th:text="${counter.count}"> </td>
                                 <td th:text="${listAprAddm[counter.count - 1].tenor} + 1"></td>
                                 <td th:text="${listAprAddm[counter.count - 1].tenor}"></td>
                                 <td th:text="${listAprAddm[counter.count - 1].rate}"></td>
                                 <td th:text="${angsurans}"></td>
                                 <td>
-                                    <form th:action="@{/ajukan/}+${angsurans} +'/2'"  th:object = "${kreditModel}" method="POST">
+                                    <form th:action="@{/ajukan/}+${angsurans}"  th:object = "${kreditModel}" method="POST">
                                         <input type = "hidden" th:field="${kreditModel.nominal}" th:value="${nominalKredit}"/>
                                         <button class="btn btn-primary" type="submit">
                                             Ajukan
@@ -78,7 +76,7 @@
                                         <td th:text="${listAprAddb[counter.count - 1].rate}"></td>
                                         <td th:text="${angsurans}"></td>
                                         <td>
-                                            <form th:action="@{/ajukan/}+${angsurans} +'/1'"  th:object = "${kreditModel}" method="POST">
+                                            <form th:action="@{/ajukan/}+${angsurans}"  th:object = "${kreditModel}" method="POST">
                                                 <input type = "hidden" th:field="${kreditModel.nominal}" th:value="${nominalKredit}"/>
                                                 <button class="btn btn-primary" type="submit">
                                                     Ajukan

@@ -33,7 +33,7 @@
                 <div class="row form-group">
                   <div class="col-md-12">
                     <label class="text-black" for="subject">Tahun Kendaraan</label> 
-                    <input type="text" id="tahun" th:field="${jaminanModel.tahun}" class="form-control rounded-0">
+                    <input type="text"  th:min= "1980"  th:max="2020" id="tahun" th:field="${jaminanModel.tahun}" class="form-control rounded-0">
                   </div>
                 </div>
   

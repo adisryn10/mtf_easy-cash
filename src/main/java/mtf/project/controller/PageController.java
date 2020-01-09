@@ -1,5 +1,6 @@
 package mtf.project.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,7 +66,11 @@ public class PageController{
             model.addAttribute("role", authority.getAuthority());
         }
         List<KendaraanModel> listKendaraan = kendaraanService.getAllKendaraan();
-        List<AsuransiModel> listAsuransi  = asuransiService.getAllAsuransi();
+        List<AsuransiModel> asuransiDaftar  = asuransiService.getAllAsuransi();
+        List<AsuransiModel> listAsuransi = new ArrayList<AsuransiModel>();
+
+        listAsuransi.add(asuransiDaftar.get(1));
+        listAsuransi.add(asuransiDaftar.get(5));
 
         JaminanModel jaminanModel = new JaminanModel();
 
