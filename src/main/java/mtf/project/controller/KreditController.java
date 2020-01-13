@@ -89,7 +89,18 @@ public class KreditController{
     // }
 
     @RequestMapping(path = "/form-jaminan", method = RequestMethod.GET)
-    public String formAngunan(Model model){
+    public String formAngunan(Model model, Authentication auth){
+
+        UserRoleModel user = userService.getUserByUsername(auth.getName());
+
+        boolean haveKredit = false;
+
+        if(user.getJaminan() != null || user.getKredit() != null ){
+            haveKredit = true;
+        }
+        
+        model.addAttribute("haveKredit", haveKredit);
+
         List<KendaraanModel> listKendaraan = kendaraanService.getAllKendaraan();
         List<AsuransiModel> asuransiDaftar  = asuransiService.getAllAsuransi();
         List<AsuransiModel> listAsuransi = new ArrayList<AsuransiModel>();

@@ -6,11 +6,39 @@
       <!-- Page Content  -->
       <div id="content" class="p-4 p-md-5 pt-5">
         <div class="container-fluid">
+            <br>
             <div class="row justify-content-center">
+
                 <div class="col-md-9">
+                    <br>
                     <div class = "card">
                         <div class = "card-header">
                             <h2 class="mb-4">Account</h2>
+                        </div>
+                        <div class = "card-body">
+                            <table class="table" style="width:70%">
+                                <tbody>
+                                    <tr>
+                                        <th style="width: 300px;">Nama </th>
+                                        <td th:text="${user.username}"></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Role </th>
+                                        <td th:text="${user.role.nama}"></td>
+                                    </tr>
+                                    <tr>
+                                </tbody>
+                            </table>           
+                        </div>
+                    </div>
+                </div>
+                
+
+                <div class="col-md-9" th:if="${user.role.nama} == 'CUSTOMER'">
+                    <br><br>
+                    <div class = "card" th:if="${user.userPersonal} != null">
+                        <div class = "card-header">
+                            <h2 class="mb-4">Personal</h2>
                         </div>
                         <div class = "card-body">
                             <table class="table" style="width:70%">
@@ -38,9 +66,9 @@
                     </div>
                 </div>
 
-                <div class="col-md-9">
+                <div class="col-md-9" th:if="${user.role.nama} == 'CUSTOMER'">
                     <br><br>
-                    <div class = "card">
+                    <div class = "card" th:if="${user.userIdentity} != null">
                         <div class = "card-header">
                             <h2 class="mb-4">Dokumen Identitas</h2>
                         </div>
@@ -93,7 +121,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-9">
+                <div class="col-md-9" th:if="${user.role.nama} == 'CUSTOMER' AND ${user.kredit} != null">
                     <br><br>
                     <div class = "card">
                         <div class = "card-header">
@@ -114,41 +142,46 @@
                                         <th>Angsuran per Bulan </th>
                                         <td th:text="${user.kredit.angsuran.nominal}"></td>
                                     </tr>
+                                    <tr>
+                                        <th>Status </th>
+                                        <td th:text="${user.kredit.status}"></td>
+                                    </tr>
                                 </tbody>
                             </table>  
                             <br>         
                         </div>
                     </div>
+                    <div class="container-bar" th:if = "${user.kredit.status} == 'Under Review'">
+                        <ul class="progressbar">
+                            <div>
+                                <li class="active">Credit Application Sent</li>
+                                <li>In Review</li>
+                                <li>Survey</li>
+    
+                            </div>
+                        </ul>
+                    </div>
+                    <div class="container-bar" th:if = "${user.kredit.status} == 'Survey'">
+                        <ul class="progressbar">
+                            <div>
+                                <li class="active">Credit Application Sent</li>
+                                <li class="active">In Review</li>
+                                <li>Survey</li>
+                            </div>
+                        </ul>
+                    </div>
+                    <div class="container-bar" th:if = "${user.kredit.status} == 'Approved'">
+                        <ul class="progressbar">
+                            <div>
+                                <li class="active">Credit Application Sent</li>
+                                <li class="active">In Review</li>
+                                <li class="active">Survey Approved</li>
+                            </div>
+                        </ul>
+                    </div>
+    
                 </div>
-                <div class="container-bar" th:if = "${user.kredit.status} == 'Under Review'">
-                    <ul class="progressbar">
-                        <div>
-                            <li class="active">Credit Application Sent</li>
-                            <li>In Review</li>
-                            <li>Survey</li>
-
-                        </div>
-                    </ul>
-                </div>
-                <div class="container-bar" th:if = "${user.kredit.status} == 'Survey'">
-                    <ul class="progressbar">
-                        <div>
-                            <li class="active">Credit Application Sent</li>
-                            <li class="active">In Review</li>
-                            <li>Survey</li>
-                        </div>
-                    </ul>
-                </div>
-                <div class="container-bar" th:if = "${user.kredit.status} == 'Approved'">
-                    <ul class="progressbar">
-                        <div>
-                            <li class="active">Credit Application Sent</li>
-                            <li class="active">In Review</li>
-                            <li class="active">Survey Approved</li>
-                        </div>
-                    </ul>
-                </div>
-
+               
 
             </div>
         </div>
