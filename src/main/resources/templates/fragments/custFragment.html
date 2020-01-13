@@ -52,7 +52,7 @@
                 <li><a th:href="@{/}" class="nav-link">Home</a></li>
                 <li><a th:href="@{/#features-section}" class="nav-link">Keuntungan</a></li>
                 <li><a th:href="@{/#testimonials-section}" class="nav-link">Testimoni</a></li>
-                <li><a th:href="@{/#contact-section}" class="nav-link">Simulasi</a></li>
+                <li><a th:href="@{/#simulation-section}" class="nav-link">Simulasi</a></li>
                 <li><a th:if = "${#httpServletRequest.remoteUser} == null" th:href="@{/login}" class="nav-link">Log In</a></li>
                 <li th:if = "${#httpServletRequest.remoteUser} != null"><a th:href="@{/form-jaminan}" class="nav-link">Ajukan Kredit</a></li>
                 <li th:if = "${#httpServletRequest.remoteUser} != null"><a th:href="@{/account}" class="nav-link">Dashboard</a></li>
