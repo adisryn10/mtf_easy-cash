@@ -60,7 +60,13 @@ public class SimulasiController{
     @RequestMapping(path = "/form-nominal", method = RequestMethod.POST)
     public String submitJaminan(@ModelAttribute JaminanModel barangJaminan, Model model){
 
-        int hargaMax = barangJaminan.getKendaraan().getHargaPasar() * 8 / 10 ;
+        long hargaMax = barangJaminan.getKendaraan().getHargaPasar() * 8 / 10 ;
+        int selisihTahun = 2020 - barangJaminan.getTahun();
+
+        for(int i = 0; i < selisihTahun; i ++){
+            hargaMax = Math.round(hargaMax * 0.99);
+        }
+
         model.addAttribute("hargaMax", hargaMax);
 
         KreditModel kreditModel = new KreditModel();
@@ -106,10 +112,10 @@ public class SimulasiController{
     }
 
     public double perhitungan(int pv, double rate, int tenor){
-        double pembilang = pv * (rate) / tenor;
-        double pangkat = Math.pow((1+(rate)), tenor);
+        double pembilang = pv * (rate/100);
+        double pangkat = Math.pow((1+(rate/100)), tenor);
         double penyebut = 1 -  (1/pangkat);
-        double result = pembilang/penyebut/10;
+        double result = pembilang/penyebut;
         return result;
     }
 }
