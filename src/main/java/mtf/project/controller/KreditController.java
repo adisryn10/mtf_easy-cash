@@ -137,7 +137,7 @@ public class KreditController{
         int selisihTahun = 2020 - barangJaminan.getTahun();
 
         for(int i = 0; i < selisihTahun; i ++){
-            hargaMax = Math.round(hargaMax * 0.01);
+            hargaMax = Math.round(hargaMax * 0.99);
         }
 
         model.addAttribute("hargaMax", hargaMax);
